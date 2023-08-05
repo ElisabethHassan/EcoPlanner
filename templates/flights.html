@@ -1,0 +1,253 @@
+{% extends "layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./{{ url_for('static', filename='./forms.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+
+<br><br>
+<!-- code for the flight info display -->
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+        <div class="main left down">
+            <div class="main-inner" id="panel">
+                <div class="main-box" id="panel-container">
+                    <div class="img">
+                        <img src="./static/img/plane.png" alt="plane logo">
+                    </div>
+                    <!-- flight information on the card -->
+                    <div class="text center">
+                        <h2 class="fw-bold subtitle" id="lead" style="margin-top: -5%; margin-bottom:10%; font-size:60px;"><span class="starting_air">•••</span> ➔ <span class="ending_air">•••</span></h2>
+                        <div class="row">
+                            <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+                                <h6 class="fw-strong">Passengers</h6>
+                            </div>
+
+                            <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+                                <h6 class="fw-strong">Flight</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+                                <p ><span class="passengers">0</span></p>
+                            </div>
+
+                            <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+                                <p>AB001</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+                                <h6 class="fw-strong">Seat Number</h6>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+                                <h6 class="fw-strong">Gate</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+                                <p >26D</p>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+                                <p>C06</p>
+                            </div>
+                        </div>
+                        <img src="./static/img/barcode.png" alt="barcode" width="330px" height="150px" style="margin:-30px;">
+                        <br>
+                        <p><i>Disclaimer: This boarding pass is simulated and does not reflect real flight details. (ie. gate, flight number)</i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  The form part  -->
+    <div class="col-sm-6 mb-3 mb-sm-0 text-center">
+
+<div class="form-holder">
+
+    <h3>Calculating Flight Emissions</h3>
+    <p>Enter your flight information to calculate carbon emissions.</p>
+
+    <div class="flight-content">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class = 'form-group'>
+                <!-- wherefrom airport data -->
+            <div class="airport">
+                <!-- {{ form.wherefrom.label(class='form-control-label') }} -->
+                {% if form.wherefrom.errors %}
+                {{ form.wherefrom(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                {% for error in form.wherefrom.errors %}
+                    <span>{{error}}</span>
+                {% endfor %}
+                </div>
+                {% else %}
+                    {{ form.wherefrom(class="form-control form-control-default form-flight start-airport", style='width:50%', placeholder="Origin") }}
+                {% endif %}
+            <!-- adding arrows-->
+            <div class="arrows" style="float:left">
+                <img src="./static/exchange.png" alt="Two arrows" style="width:30%">
+            </div> 
+            
+           <!-- validation for whereto airport -->
+            <!-- {{ form.whereto.label(class='form-control-label') }} -->
+            {% if form.whereto.errors %}
+            {{ form.whereto(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+            {% for error in form.whereto.errors %}
+                <span>{{error}}</span>
+            {% endfor %}
+            </div>
+            {% else %}
+                {{ form.whereto(class="form-control form-control-default form-flight destination-airport", style='width:50%', placeholder="Destination") }}
+            {% endif %}
+        </div>
+        <div class="col-md-12 form-passengers">
+            <!-- {{ form.passengers.label(class='form-control-label') }} -->
+            {% if form.passengers.errors %}
+            {{ form.passengers(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+            {% for error in form.passengers.errors %}
+                <span>{{error}}</span>
+            {% endfor %}
+            </div>
+            {% else %}
+                {{ form.passengers(class="form-control form-control-default pass_num ", style='width:33%', placeholder="Passengers") }}
+            {% endif %}
+        </div>
+            
+              <!-- submit button -->
+           <div class="form-btn">
+            {{ form.submit(class="btn btn-dark btn-default gradient", style="margin-top:20px") }}
+           </div>
+           <div id="resultContainer"></div>
+        </fieldset>
+        </form>
+    </div>
+</div>
+    </div>
+</div>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const resultContainer = document.getElementById('resultContainer');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            console.log("reached 1")
+            let origin = document.querySelector("input[name=wherefrom]").value.toUpperCase();
+            let destination = document.querySelector("input[name=whereto]").value.toUpperCase();
+            let numPass = document.querySelector("input[name=passengers]").value;
+            const data = {
+                type: "flight",
+                passengers: numPass,
+                legs: [
+                    {departure_airport: origin, destination_airport: destination}
+                ]
+            };
+        api = "{{url_for('lookup')}}"
+        fetch(api, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data) // Convert the data object to JSON format
+        }).then(function(response){
+            console.log("reached 2")
+            return response.json();
+        }).then(function(response) {
+            const { carbon_g, carbon_kg, carbon_lb } = response.data.attributes;
+            const resultHTML = `
+            <hr>
+            <br>
+            <p>Estimated Carbon Emissions:</p>
+            <ul>
+            <li>${carbon_g} Grams</li>
+            <li>${carbon_kg} Kilograms</li>
+            <li>${carbon_lb} Pounds</li>
+            </ul>
+            `;
+            resultContainer.innerHTML = resultHTML
+            }).catch(function(error) {
+                console.log("Error in async");
+            });
+        });
+    });
+
+
+    // javascript for card element
+    
+    let myPanel = document.getElementById("panel");
+    let subpanel = document.getElementById("panel-container");
+    
+    myPanel.onmousemove = transformPanel;
+    myPanel.onmouseenter = handleMouseEnter;
+    myPanel.onmouseleave = handleMouseLeave;
+    
+    let mouseX, mouseY;
+    
+    let transformAmount = 5;
+    
+    function transformPanel(mouseEvent) {
+        mouseX = mouseEvent.pageX;
+        mouseY = mouseEvent.pageY;
+    
+        const centerX = myPanel.offsetLeft + myPanel.clientWidth / 2;
+        const centerY = myPanel.offsetTop + myPanel.clientHeight / 2;
+    
+        const percentX = (mouseX - centerX) / (myPanel.clientWidth / 2);
+        const percentY = -((mouseY - centerY) / (myPanel.clientHeight / 2));
+    
+        subpanel.style.transform = "perspective(400px) rotateY(" + percentX * transformAmount + "deg) rotateX(" + percentY * transformAmount + "deg)";
+    }
+    
+    function handleMouseEnter() {
+        setTimeout(() => {
+            subpanel.style.transition = "";
+        }, 100);
+        subpanel.style.transition = "transform 0.8s";
+    }
+    
+    function handleMouseLeave() {
+        subpanel.style.transition = "transform 0.8s";
+        setTimeout(() => {
+            subpanel.style.transition = "";
+        }, 100);
+    
+        subpanel.style.transform = "perspective(400px) rotateY(0deg) rotateX(0deg)";
+    }
+
+
+
+    // script for the form user input thing
+    document.querySelector(".start-airport").oninput = () => {
+      document.querySelector(".starting_air").innerText = document.querySelector('.start-airport').value;
+    }
+
+   document.querySelector(".destination-airport").oninput = () => {
+      document.querySelector(".ending_air").innerText = document.querySelector('.destination-airport').value;
+    }
+
+    document.querySelector(".pass_num").oninput = () => {
+      document.querySelector(".passengers").innerText = document.querySelector('.pass_num').value;
+    }
+
+
+</script>
+</html>
+{% endblock content %}
