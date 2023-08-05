@@ -1,7 +1,7 @@
 # EcoPlanner
 EcoPlanner is an eco-friendly travel planner that gives users sustainable travel options, calculate their carbon footprint, and explore eco-conscious destinations. It is backed by CarbonInterface API (https://www.carboninterface.com/) which is used to calculate the carbon footprint of both drive and flight.
 
-# Getting Started
+## Getting Started
 To run the program...
 1. **Clone the repository.**
    ```bash
@@ -14,7 +14,7 @@ To run the program...
 3. **Run the app.py file.**
 4. **Open the Flask link in your preferred browser.**
 
-# Technologies Used
+## Technologies Used
 1. Python
 2. HTML
 3. CSS
@@ -22,7 +22,7 @@ To run the program...
 5. Flask
 6. BootStrap
 
-# Contributors
+## Contributors
 * Matt Avella
 * Adejola Ogunsan
 * Jesus Rodriguez
