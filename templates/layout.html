@@ -51,10 +51,11 @@
   <body>
 <!-- navbar  -->
 <header>
-  <a href="{{ url_for('home')}}" class="logo hello">EcoPlanner</a>
+
   <ul class="navigation">
-    <li><a href="{{ url_for('home')}}" class="active">Home</a></li>
-    <li><a href="https://github.com/mavella17/EcoPlanner">Github </a></li>
+      <a href="{{ url_for('home')}}" class="logo hello" sytle="font-size: 4vw;">EcoPlanner</a>
+    <li><a href="{{ url_for('home')}}" class="active" sytle="font-size: 4vw;">Home</a></li>
+    <li><a href="https://github.com/ElisabethHassan/EcoPlanner">Github </a></li>
     <li><a href="{{ url_for('travel')}}">Travel</a></li>
     <li><a href="{{ url_for('results') }}">Results</a></li>
     <li id ="log"></li>

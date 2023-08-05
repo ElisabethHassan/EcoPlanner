@@ -5,6 +5,7 @@ body {
    background-color: white;
    background-repeat: no-repeat;
    background-size: cover;
+   display: flexbox;
 }
 
 /* CSS for the circles and clickable options */
@@ -17,10 +18,11 @@ body {
 
  body .page {
 	 margin: 0 auto;
-	 width: 920px;
-   height: 40px;
+	 width: 45%;
+   height: 50%;
    padding-left: 5%;
-   margin-top: -80px;
+   margin-top: -6%;
+   display: flexbox;
 }
  body .content {
 	 width: 33.33%;
@@ -50,6 +52,7 @@ body {
 	 margin: auto;
 	 top: 50%;
 	 width: 350px;
+	 margin-right: 10%;
 	 transform: translateY(-50%);
 	 transition: all 0.5s;
 	 cursor: pointer;
@@ -72,7 +75,7 @@ body {
 }
 
 #circle2 {
-  margin-left: 160px;
+  margin-left: 50%;
 }
  body .circle:hover h2, body .circle:hover h3 {
 	 opacity: 1;

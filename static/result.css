@@ -72,7 +72,7 @@ header {
 }
 
  #hello {
-    font-size: 75px;
+    font-size: 6vw;
     font-weight: 900;
     text-decoration: none;
     background: linear-gradient(to right,
@@ -90,8 +90,14 @@ header {
 
   /* card css */
 
+
+  .main {
+    display: flexbox;
+  }
+
     .main-inner {
       padding-left: 30%;
+
     }
    .main-box {
   	 display: flex;

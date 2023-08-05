@@ -12,3 +12,6 @@ pycodestyle
 pytest
 Werkzeug==2.3.6
 pandas
+python-dotenv
+requests
+flask-login

@@ -8,26 +8,40 @@ body {
    background-color: white;
    background-repeat: no-repeat;
    background-size: cover;
+
 }
 
+/* For width 400px and larger: */
+@media only screen and (min-width: 100px) {
+  body {
+    background-image: url("img/mesh2.png");
+    background-size: cover;
+  }
+}
 
 /* css for the spinning earth animation */
 #earth {
+
   background-image: url("img/earth.gif");
   /* background-color: white; */
   background-repeat: no-repeat;
-  background-size: 900px;
+  background-size: 70%;
+  display: flex;
   background-position: 80% 50%;
+  margin-top: 18%;
 }
 
 /* css for the nav bar */
+
+
 header {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 30px 100px;
-  display: flex;
+  /* padding: 30px 100px; */
+  padding: 5% 5%;
+  display: flexbox;
   justify-content: space-between;
   align-items: center;
   z-index:1000;
@@ -45,6 +59,7 @@ header {
   justify-content: center;
   align-items: center;
   gap: 40px;
+  overflow: hidden;
 }
 
 .navigation li {
@@ -65,10 +80,10 @@ header {
 
 .header {
   position: relative;
-  padding: 100px;
-  padding-bottom: 0px;
-  margin-top: 80px;
-  margin-left: 50px;
+  padding: 8%;
+  padding-bottom: 0%;
+  margin-top: 2%;
+  margin-left: 3%;
 }
 
 .title {
@@ -78,6 +93,31 @@ header {
 .subtitle {
   font-size:40px;
 }
+
+@media screen and (max-width: 600px) {
+  .navigation a:not(:first-child) {display: none;}
+  .navigation a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .navigation.responsive {position: relative;}
+  .navigation.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navigation.responsive a {
+    float: none;
+    display: flex;
+    text-align: left;
+  }
+}
+
+
 
 
 /* css for the auto typing */

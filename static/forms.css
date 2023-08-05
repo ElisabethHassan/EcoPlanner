@@ -11,6 +11,18 @@ h3, p{
   font-weight: 500%;
   margin-bottom: 5px;
 }
+.starting_air {
+    color: black;
+}
+
+.passengers{
+    color: black;
+}
+
+.ending_air{
+    color: black;
+}
+
 
  .form-holder{
   display: flex;

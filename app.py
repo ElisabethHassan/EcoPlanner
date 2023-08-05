@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 import flask_login
 import flask
-from key import BKEY
+# from key import BKEY
 import sqlalchemy as db
 import pprint
 import sqlite3
@@ -242,7 +242,7 @@ def clearDrives():
 @app.route('/lookup', methods=['POST'])
 def lookup():
     headers = {
-        'Authorization': 'Bearer ' + BKEY,
+        # 'Authorization': 'Bearer ' + BKEY,
         'Content-Type': 'application/json'
     }
     api = 'https://www.carboninterface.com/api/v1/estimates'
@@ -349,4 +349,4 @@ def results():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port='1231')

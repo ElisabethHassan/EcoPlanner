@@ -131,19 +131,49 @@
         </div>
             
               <!-- submit button -->
-           <div class="form-btn">
+           <div class="form-btn" id="clickbtn" onclick="showButton()">
             {{ form.submit(class="btn btn-dark btn-default gradient", style="margin-top:20px") }}
            </div>
            <div id="resultContainer"></div>
+
         </fieldset>
         </form>
     </div>
-</div>
+    <!-- button to go to the results page -->
+    <div class="form-btn" id="ResultsBtn" style="display:none;">
+        <a href="results" class="btn btn-dark btn-default gradient" >See Total Carbon Footprint</a>
     </div>
 </div>
 
+
+
+
+
+    </div>
+</div>
+
+
 </body>
 <script>
+
+function showButton () {
+      var form = document.getElementById('ResultsBtn');
+      if (form.style.display === 'none') {
+        // 👇️ this SHOWS the form
+        form.style.display = 'block';
+      }
+
+      //else {
+        // 👇️ this HIDES the form
+        //form.style.display = 'none';
+      //}
+
+
+}
+
+
+
+
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.querySelector('form');
         const resultContainer = document.getElementById('resultContainer');
