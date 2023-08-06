@@ -23,11 +23,12 @@ To run the program...
 5. Flask
 6. BootStrap
 
-## Landing Page
-![Landing Page](static/img/ecoplanner.png)
-
 ## Contributors
 * Matt Avella
 * Adejola Ogunsan
 * Jesus Rodriguez
 * Elisabeth Hassan
+
+
+### Landing Page
+![Landing Page](static/img/ecoplanner.png)
