@@ -2,7 +2,7 @@
 EcoPlanner is an eco-friendly travel planner that gives users sustainable travel options, calculate their carbon footprint, and explore eco-conscious destinations. It is backed by CarbonInterface API (https://www.carboninterface.com/) which is used to calculate the carbon footprint of both drive and flight. Users can type in their travel distance or starting/destination flight locations and will be returned with their carbon footprint. 
 
 ## Getting Started
-![My Image](statc/img/ecoplanner.png)
+![My Image](static/img/ecoplanner.png)
 To run the program...
 1. **Clone the repository.**
    ```bash
